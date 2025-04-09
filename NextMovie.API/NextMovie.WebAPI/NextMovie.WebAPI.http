@@ -1,0 +1,6 @@
+@NextMovie.WebAPI_HostAddress = http://localhost:5117
+
+GET {{NextMovie.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
