@@ -2,9 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NextMovie.WebAPI.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : NextMovieController
     {
         private static readonly string[] Summaries = new[]
         {
