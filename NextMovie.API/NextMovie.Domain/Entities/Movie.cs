@@ -1,6 +1,6 @@
 ﻿namespace NextMovie.Domain.Entities
 {
-    public class Movie
+    public class Movie : IEntity
     {
         public Guid Id { get; set; }
 

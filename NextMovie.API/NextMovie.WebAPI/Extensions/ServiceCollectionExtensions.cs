@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using NextMovie.Domain.Interfaces;
 using NextMovie.Infrastructure.Data;
+using NextMovie.Infrastructure.Repositories;
 
-namespace NextMovie.WebAPI
+namespace NextMovie.WebAPI.Extensions
 {
     static class ServiceCollectionExtensions
     {
@@ -24,5 +26,12 @@ namespace NextMovie.WebAPI
                 options.ApiVersionReader = new UrlSegmentApiVersionReader();
             });
         }
+
+        public static void RegisterServices(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        }
+
+
     }
 }

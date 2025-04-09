@@ -1,4 +1,4 @@
-using NextMovie.WebAPI;
+using NextMovie.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,10 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.RegisterDatabase(builder.Configuration);
+builder.Services.RegisterServices();
 builder.Services.AddVersioning();
+
+builder.ConfigureSerilog();
 
 var app = builder.Build();
 
@@ -26,3 +29,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
