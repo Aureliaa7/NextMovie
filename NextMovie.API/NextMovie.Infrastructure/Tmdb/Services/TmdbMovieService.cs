@@ -24,7 +24,8 @@ namespace NextMovie.Infrastructure.Tmdb.Services
 
         public async Task<MoviePagedResponseDto> GetLatestAsync(int pageNumber = 1)
         {
-            PagedApiResponse<TmdbMovieDto> response = (await apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(tmdbSettings.LatestMoviesEndpoint, new Dictionary<string, string> { { "page", pageNumber.ToString() } }))!;
+            PagedApiResponse<TmdbMovieDto> response = (await apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(tmdbSettings.LatestMoviesEndpoint,
+                new Dictionary<string, string> { { "page", pageNumber.ToString() } }))!;
             if (response.Results.Count > 0)
             {
                 IReadOnlyList<TmdbGenreDto> genres = genresStore.GetAllGenres();

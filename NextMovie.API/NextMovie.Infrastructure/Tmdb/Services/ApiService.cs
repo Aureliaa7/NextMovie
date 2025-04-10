@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
+using NextMovie.Application;
 using NextMovie.Application.Interfaces;
-using NextMovie.Domain;
 using System.Text.Json;
 
 namespace NextMovie.Infrastructure.Tmdb.Services

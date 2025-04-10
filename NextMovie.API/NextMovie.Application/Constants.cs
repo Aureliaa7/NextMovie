@@ -1,4 +1,4 @@
-﻿namespace NextMovie.Domain
+﻿namespace NextMovie.Application
 {
     public static class Constants
     {

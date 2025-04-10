@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NextMovie.Domain\NextMovie.Application.csproj" />
+    <ProjectReference Include="..\NextMovie.Application\NextMovie.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,6 @@
 using NextMovie.Application.Entities;
 using NextMovie.Application.Exceptions;
 using NextMovie.Application.Interfaces;
-using NextMovie.Domain;
 using NextMovie.Models.DTOs.Domain.Users;
 using NextMovie.Models.Options;
 using System.IdentityModel.Tokens.Jwt;
