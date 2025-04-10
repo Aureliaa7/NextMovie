@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NextMovie.Domain.Entities;
+using NextMovie.Application.Entities;
 using System.Reflection;
 
 namespace NextMovie.Infrastructure.Data

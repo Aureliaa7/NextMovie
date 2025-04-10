@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NextMovie.Domain.Entities;
+using NextMovie.Application.Entities;
 
 namespace NextMovie.Infrastructure.Configurations
 {
@@ -15,13 +15,19 @@ namespace NextMovie.Infrastructure.Configurations
                 .IsUnique();
 
             builder.Property(x => x.FirstName)
-                .HasMaxLength(100);
+                .HasMaxLength(60);
 
             builder.Property(x => x.LastName)
-                .HasMaxLength(80);
+                .HasMaxLength(50);
 
             // do not store the plain text password in the database
             builder.Ignore(x => x.Password);
+
+            builder.Property(b => b.PasswordHash)
+            .IsRequired();
+
+            builder.Property(b => b.PasswordSalt)
+               .IsRequired();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NextMovie.Domain.Entities;
+using NextMovie.Application.Entities;
 
 namespace NextMovie.Infrastructure.Configurations
 {

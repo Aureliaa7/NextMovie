@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NextMovie.Domain.Entities;
-using NextMovie.Domain.Interfaces;
+using NextMovie.Application.Entities;
+using NextMovie.Application.Interfaces;
 using NextMovie.Infrastructure.Data;
 using System.Linq.Expressions;
 
@@ -88,6 +88,11 @@ namespace NextMovie.Infrastructure.Repositories
             entities = IncludeNavigationProperties(entities, includes);
 
             return entities.FirstOrDefaultAsync();
+        }
+
+        public Task SaveAsync()
+        {
+            return context.SaveChangesAsync();
         }
 
         private static IQueryable<T> IncludeNavigationProperties(IQueryable<T> entities, params Expression<Func<T, object>>[]? includes)

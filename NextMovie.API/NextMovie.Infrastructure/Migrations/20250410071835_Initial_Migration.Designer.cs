@@ -12,7 +12,7 @@ using NextMovie.Infrastructure.Data;
 namespace NextMovie.Infrastructure.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20250409112807_Initial_Migration")]
+    [Migration("20250410071835_Initial_Migration")]
     partial class Initial_Migration
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace NextMovie.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.Movie", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.Movie", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace NextMovie.Infrastructure.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.MovieComment", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.MovieComment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +77,7 @@ namespace NextMovie.Infrastructure.Migrations
                     b.ToTable("MovieComments");
                 });
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.User", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,9 +98,13 @@ namespace NextMovie.Infrastructure.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
@@ -110,15 +114,15 @@ namespace NextMovie.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.MovieComment", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.MovieComment", b =>
                 {
-                    b.HasOne("NextMovie.Domain.Entities.Movie", "Movie")
+                    b.HasOne("NextMovie.Application.Entities.Movie", "Movie")
                         .WithMany("MovieComments")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NextMovie.Domain.Entities.User", "User")
+                    b.HasOne("NextMovie.Application.Entities.User", "User")
                         .WithMany("MovieComments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -129,12 +133,12 @@ namespace NextMovie.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.Movie", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.Movie", b =>
                 {
                     b.Navigation("MovieComments");
                 });
 
-            modelBuilder.Entity("NextMovie.Domain.Entities.User", b =>
+            modelBuilder.Entity("NextMovie.Application.Entities.User", b =>
                 {
                     b.Navigation("MovieComments");
                 });

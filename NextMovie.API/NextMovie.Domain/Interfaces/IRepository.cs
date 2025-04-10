@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace NextMovie.Domain.Interfaces
+namespace NextMovie.Application.Interfaces
 {
     public interface IRepository<T> where T : class, new()
     {
@@ -63,5 +63,11 @@ namespace NextMovie.Domain.Interfaces
         /// <returns>The first entity that matches the provided filter or null</returns>
         Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null,
             params Expression<Func<T, object>>[]? includes);
+
+        /// <summary>
+        /// Saves changes
+        /// </summary>
+        /// <returns></returns>
+        Task SaveAsync();
     }
 }

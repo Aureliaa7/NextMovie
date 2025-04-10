@@ -1,4 +1,4 @@
-﻿namespace NextMovie.Domain.Entities
+﻿namespace NextMovie.Application.Entities
 {
     public class MovieComment : IEntity
     {
