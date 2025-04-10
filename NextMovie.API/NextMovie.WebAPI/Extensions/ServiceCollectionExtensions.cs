@@ -46,6 +46,8 @@ namespace NextMovie.WebAPI.Extensions
             services.AddScoped<IApiService, ApiService>();
             services.AddScoped<ITmdbMovieService, TmdbMovieService>();
             services.AddScoped<ITmdbConfigurationService, TmdbConfigurationService>();
+            services.AddScoped<ITmdbBackdropsService, TmdbBackdropsService>();
+            services.AddScoped<ITmdbCrewService, TmdbCrewService>();
         }
 
         public static void ConfigureJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)

@@ -16,10 +16,18 @@ namespace NextMovie.WebAPI.Controllers
 
         [HttpGet]
         [Route("latest")]
-        public async Task<IActionResult> GetLatestMoviesAsync([FromQuery] int page = 1)
+        public async Task<IActionResult> GetLatestAsync([FromQuery] int page = 1)
         {
             MoviePagedResponseDto movies = await movieService.GetLatestAsync(page);
             return Ok(movies);
+        }
+
+        [HttpGet]
+        [Route("details/{id}")]
+        public async Task<IActionResult> GetDetailsAsync([FromRoute] string id)
+        {
+            MovieDetailsDto details = await movieService.GetDetailsAsync(id);
+            return Ok(details);
         }
     }
 }

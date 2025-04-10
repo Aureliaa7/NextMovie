@@ -35,8 +35,8 @@ namespace NextMovie.Infrastructure.Tmdb.BackgroundTasks
             {
                 ITmdbGenreService genreService = scope.ServiceProvider.GetRequiredService<ITmdbGenreService>();
                 List<TmdbGenreDto> genres = await genreService.GetAllAsync();
-                TmdbStore genreStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
-                genreStore.SetGenres(genres);
+                TmdbStore tmdbStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
+                tmdbStore.SetGenres(genres);
             }
             catch (Exception ex)
             {
@@ -50,8 +50,8 @@ namespace NextMovie.Infrastructure.Tmdb.BackgroundTasks
             {
                 ITmdbConfigurationService configurationService = scope.ServiceProvider.GetRequiredService<ITmdbConfigurationService>();
                 TmdbConfigurationDto configuration = await configurationService.GetAsync();
-                TmdbStore genreStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
-                genreStore.SetConfiguration(configuration);
+                TmdbStore tmdbStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
+                tmdbStore.SetConfiguration(configuration);
             }
             catch (Exception ex)
             {

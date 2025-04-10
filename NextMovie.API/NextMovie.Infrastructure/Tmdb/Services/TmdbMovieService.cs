@@ -12,19 +12,39 @@ namespace NextMovie.Infrastructure.Tmdb.Services
         private readonly IApiService apiService;
         private readonly TmdbSettings tmdbSettings;
         private readonly TmdbStore genresStore;
+        private readonly ITmdbBackdropsService backdropsService;
+        private readonly ITmdbCrewService crewService;
 
         public TmdbMovieService(IApiService apiService,
             TmdbSettings tmdbSettings,
-            TmdbStore genresStore)
+            TmdbStore genresStore,
+            ITmdbBackdropsService backdropsService,
+            ITmdbCrewService crewService)
         {
             this.apiService = apiService;
             this.tmdbSettings = tmdbSettings;
             this.genresStore = genresStore;
+            this.backdropsService = backdropsService;
+            this.crewService = crewService;
+        }
+
+        public async Task<MovieDetailsDto> GetDetailsAsync(string id)
+        {
+            List<string> backdrops = await backdropsService.GetByMovieIdAsync(id);
+            List<PersonCrewDto> crew = await crewService.GetByMovieIdAsync(id);
+
+            return new MovieDetailsDto
+            {
+                BackdropPaths = backdrops,
+                Crew = crew,
+                Id = id
+            };
         }
 
         public async Task<MoviePagedResponseDto> GetLatestAsync(int pageNumber = 1)
         {
-            PagedApiResponse<TmdbMovieDto> response = (await apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(tmdbSettings.LatestMoviesEndpoint,
+            PagedApiResponse<TmdbMovieDto> response = (await apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(
+                tmdbSettings.LatestMoviesEndpoint,
                 new Dictionary<string, string> { { "page", pageNumber.ToString() } }))!;
             if (response.Results.Count > 0)
             {

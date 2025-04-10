@@ -15,5 +15,9 @@
         public string ConfigurationEndpoint { get; set; } = string.Empty;
 
         public string DefaultBackdropSize { get; set; } = string.Empty;
+
+        public string MovieImagesEndpoint { get; set; } = string.Empty;
+
+        public string MovieCreditsEndpoint { get; set; } = string.Empty;
     }
 }
