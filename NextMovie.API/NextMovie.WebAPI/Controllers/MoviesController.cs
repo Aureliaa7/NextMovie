@@ -29,5 +29,13 @@ namespace NextMovie.WebAPI.Controllers
             MovieDetailsDto details = await movieService.GetDetailsAsync(id);
             return Ok(details);
         }
+
+        [HttpPost]
+        [Route("search")]
+        public async Task<IActionResult> SearchAsync([FromBody] MovieSearchDto searchDto)
+        {
+            MoviePagedResponseDto movies = await movieService.SearchAsync(searchDto);
+            return Ok(movies);
+        }
     }
 }

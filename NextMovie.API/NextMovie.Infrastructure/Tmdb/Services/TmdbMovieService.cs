@@ -43,9 +43,40 @@ namespace NextMovie.Infrastructure.Tmdb.Services
 
         public async Task<MoviePagedResponseDto> GetLatestAsync(int pageNumber = 1)
         {
-            PagedApiResponse<TmdbMovieDto> response = (await apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(
+            PagedApiResponse<TmdbMovieDto> response = await GetPagedMoviesAsync(
                 tmdbSettings.LatestMoviesEndpoint,
-                new Dictionary<string, string> { { "page", pageNumber.ToString() } }))!;
+                pageNumber);
+
+            return MapTmdbResponse(response);
+        }
+
+        public async Task<MoviePagedResponseDto> SearchAsync(MovieSearchDto query)
+        {
+            string encodedQuery = Uri.EscapeDataString(query.Query.Trim());
+
+            PagedApiResponse<TmdbMovieDto> response = await GetPagedMoviesAsync(
+                string.Format(tmdbSettings.SearchMoviesByTitleEndpoint, encodedQuery),
+                query.Page);
+
+            if (response.Results.Count == 0)
+            {
+                response = await GetPagedMoviesAsync(
+                   string.Format(tmdbSettings.SearchMoviesByGenreEndpoint, encodedQuery),
+                   query.Page);
+            }
+
+            return MapTmdbResponse(response);
+        }
+
+        private Task<PagedApiResponse<TmdbMovieDto>> GetPagedMoviesAsync(string endpoint, int page)
+        {
+            return (apiService.GetAsync<PagedApiResponse<TmdbMovieDto>>(
+            endpoint,
+               new Dictionary<string, string> { { "page", page.ToString() } }))!;
+        }
+
+        private MoviePagedResponseDto MapTmdbResponse(PagedApiResponse<TmdbMovieDto> response)
+        {
             if (response.Results.Count > 0)
             {
                 IReadOnlyList<TmdbGenreDto> genres = genresStore.GetAllGenres();

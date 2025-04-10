@@ -19,5 +19,9 @@
         public string MovieImagesEndpoint { get; set; } = string.Empty;
 
         public string MovieCreditsEndpoint { get; set; } = string.Empty;
+
+        public string SearchMoviesByTitleEndpoint { get; set; } = string.Empty;
+
+        public string SearchMoviesByGenreEndpoint { get; set; } = string.Empty;
     }
 }
