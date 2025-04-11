@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NextMovie.Application;
 using NextMovie.Application.Interfaces;
 using NextMovie.Models.DTOs.Domain.Movies;
@@ -16,6 +17,7 @@ namespace NextMovie.WebAPI.Controllers
             this.movieCommentService = movieCommentService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SaveAsync([FromBody] MovieCommentCreationDto movieCommentDto)
         {

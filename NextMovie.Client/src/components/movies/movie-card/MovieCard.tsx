@@ -67,12 +67,6 @@ function MovieCard(props: MovieCardProps) {
             ></i>
             See More
           </Button>
-          {/* <Button
-            onClick={() => setShowAddCommentModal(true)}
-            variant="outline-secondary"
-          >
-            <i className="bi bi-chat-left-text"></i>
-          </Button> */}
         </Card.Body>
       </Card>
 

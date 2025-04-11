@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NextMovie.Application.Interfaces;
 using NextMovie.Models.DTOs.Domain.Users;
 
@@ -35,14 +34,6 @@ namespace NextMovie.WebAPI.Controllers
             }
 
             return Unauthorized();
-        }
-
-        [Authorize]
-        [HttpGet]
-        [Route("test")]
-        public async Task<IActionResult> Test()
-        {
-            return Ok("Hello");
         }
     }
 }

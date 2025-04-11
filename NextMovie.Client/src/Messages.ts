@@ -9,4 +9,5 @@ export const Messages = {
   NoMovieCrewAvailable: 'No crew details available',
   NoMovieDetails: 'No details available',
   SaveMovieCommentError: 'An error occurred while saving the comment.',
+  NoMoviesInfo: 'No movies were found',
 };

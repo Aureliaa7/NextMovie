@@ -19,6 +19,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onReset }) => {
     onSearch(query);
   };
 
+  const reset = () => {
+    onReset();
+    setQuery('');
+  };
+
   return (
     <Form onSubmit={handleSearchSubmit} className="mb-5">
       <InputGroup>
@@ -39,7 +44,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onReset }) => {
           </button>
           <button
             type="button"
-            onClick={onReset}
+            onClick={reset}
             className="btn btn-secondary ms-2"
             style={{ backgroundColor: '#B8D8D8', border: 'none' }}
           >

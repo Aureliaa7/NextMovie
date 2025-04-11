@@ -1,6 +1,7 @@
 import { Alert, Col, Row } from 'react-bootstrap';
 import { Movie } from '../../../interfaces/movies/movie.interface';
 import MovieCard from '../movie-card/MovieCard';
+import { Messages } from '../../../Messages';
 
 interface MovieListProps {
   movies: Movie[];
@@ -10,7 +11,7 @@ function MovieList(props: MovieListProps) {
   return (
     <>
       {props.movies.length == 0 ? (
-        <Alert variant="warn">No movies were found</Alert>
+        <Alert variant="warn">{Messages.NoMoviesInfo}</Alert>
       ) : (
         <Row className="g-4 justify-content-center">
           {props.movies.map((x) => {

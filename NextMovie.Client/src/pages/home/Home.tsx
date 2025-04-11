@@ -4,7 +4,7 @@ import LatestMovies from '../../components/movies/latest-movies/LatestMovies';
 
 function Home() {
   return (
-    <Container className={`${classes.movies} mt-5`}>
+    <Container className={`mt-5`}>
       <LatestMovies />
     </Container>
   );
