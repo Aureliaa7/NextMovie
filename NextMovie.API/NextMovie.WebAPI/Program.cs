@@ -1,3 +1,4 @@
+using NextMovie.Application;
 using NextMovie.Infrastructure.Tmdb.BackgroundTasks;
 using NextMovie.Infrastructure.Tmdb.Services;
 using NextMovie.Models.Options;
@@ -6,6 +7,16 @@ using NextMovie.WebAPI.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(Constants.ReactAppPolicyName, policy =>
+    {
+        policy.WithOrigins(builder.Configuration["ReactAppUrl"] ?? string.Empty)
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddControllers();
 
@@ -42,6 +53,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors(Constants.ReactAppPolicyName);
 
 app.MapControllers();
 

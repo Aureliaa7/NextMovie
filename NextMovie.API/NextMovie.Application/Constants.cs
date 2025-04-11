@@ -7,5 +7,7 @@
         public const string UserId = nameof(UserId);
 
         public const string TmdbHttpClient = nameof(TmdbHttpClient);
+
+        public const string ReactAppPolicyName = nameof(ReactAppPolicyName);
     }
 }

@@ -25,17 +25,17 @@ namespace NextMovie.Infrastructure.Tmdb.BackgroundTasks
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             using IServiceScope scope = serviceProvider.CreateScope();
-            await SetTmdbMovieGenresAsync(scope);
-            await SetConfigurationAsync(scope);
+            TmdbStore tmdbStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
+            await SetTmdbMovieGenresAsync(scope, tmdbStore);
+            await SetConfigurationAsync(scope, tmdbStore);
         }
 
-        private async Task SetTmdbMovieGenresAsync(IServiceScope scope)
+        private async Task SetTmdbMovieGenresAsync(IServiceScope scope, TmdbStore tmdbStore)
         {
             try
             {
                 ITmdbGenreService genreService = scope.ServiceProvider.GetRequiredService<ITmdbGenreService>();
                 List<TmdbGenreDto> genres = await genreService.GetAllAsync();
-                TmdbStore tmdbStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
                 tmdbStore.SetGenres(genres);
             }
             catch (Exception ex)
@@ -44,13 +44,12 @@ namespace NextMovie.Infrastructure.Tmdb.BackgroundTasks
             }
         }
 
-        private async Task SetConfigurationAsync(IServiceScope scope)
+        private async Task SetConfigurationAsync(IServiceScope scope, TmdbStore tmdbStore)
         {
             try
             {
                 ITmdbConfigurationService configurationService = scope.ServiceProvider.GetRequiredService<ITmdbConfigurationService>();
                 TmdbConfigurationDto configuration = await configurationService.GetAsync();
-                TmdbStore tmdbStore = scope.ServiceProvider.GetRequiredService<TmdbStore>();
                 tmdbStore.SetConfiguration(configuration);
             }
             catch (Exception ex)

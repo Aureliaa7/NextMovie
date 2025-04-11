@@ -4,9 +4,9 @@ namespace NextMovie.Infrastructure.Tmdb.Services
 {
     public class TmdbStore
     {
-        private readonly List<TmdbGenreDto> genres = new();
+        private readonly List<TmdbGenreDto> genres = [];
         private string imagesUrl = string.Empty;
-        private readonly List<string> backdropSizes = new();
+        private readonly List<string> backdropSizes = [];
 
         public void SetGenres(IEnumerable<TmdbGenreDto> genres)
         {
