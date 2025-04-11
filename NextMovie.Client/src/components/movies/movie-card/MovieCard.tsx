@@ -16,10 +16,11 @@ function MovieCard(props: MovieCardProps) {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [additionalMovieDetails, setAdditionalMovieDetails] =
     useState<MovieDetails>();
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showMovieDetailsModal, setShowMovieDetailsModal] =
+    useState<boolean>(false);
 
   const getDetails = async () => {
-    setShowModal(true);
+    setShowMovieDetailsModal(true);
     setAreDetailsLoading(true);
     setErrorMessage('');
     try {
@@ -59,13 +60,19 @@ function MovieCard(props: MovieCardProps) {
           >
             {movie.overview ? movie.overview : Messages.NoDescriptionAvailable}
           </Card.Text>
-          <Button onClick={getDetails} variant="primary">
+          <Button onClick={getDetails} variant="primary" className="me-2">
             <i
               className="bi bi-info-circle"
               style={{ fontSize: '20px', marginRight: '8px' }}
             ></i>
             See More
           </Button>
+          {/* <Button
+            onClick={() => setShowAddCommentModal(true)}
+            variant="outline-secondary"
+          >
+            <i className="bi bi-chat-left-text"></i>
+          </Button> */}
         </Card.Body>
       </Card>
 
@@ -73,8 +80,8 @@ function MovieCard(props: MovieCardProps) {
         movie={props.movie}
         errorMessage={errorMessage}
         isLoading={areDetailsLoading}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showMovieDetailsModal}
+        setShowModal={setShowMovieDetailsModal}
         movieDetails={additionalMovieDetails}
       />
     </>

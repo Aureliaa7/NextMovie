@@ -9,6 +9,6 @@ namespace NextMovie.Infrastructure.Tmdb.Interfaces
         /// </summary>
         /// <param name="movieId"></param>
         /// <returns></returns>
-        Task<List<PersonCrewDto>> GetByMovieIdAsync(string movieId);
+        Task<List<PersonCrewDto>> GetByMovieIdAsync(long movieId);
     }
 }

@@ -8,4 +8,5 @@ export const Messages = {
   GetMovieDetailsError: 'Error occurred while getting movie details.',
   NoMovieCrewAvailable: 'No crew details available',
   NoMovieDetails: 'No details available',
+  SaveMovieCommentError: 'An error occurred while saving the comment.',
 };

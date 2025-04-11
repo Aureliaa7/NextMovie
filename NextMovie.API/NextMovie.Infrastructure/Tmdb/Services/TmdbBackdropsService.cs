@@ -18,7 +18,7 @@ namespace NextMovie.Infrastructure.Tmdb.Services
             this.tmdbStore = tmdbStore;
         }
 
-        public async Task<List<string>> GetByMovieIdAsync(string movieId)
+        public async Task<List<string>> GetByMovieIdAsync(long movieId)
         {
             TmdbBackdropsListDto response = (await apiService.GetAsync<TmdbBackdropsListDto>(string.Format(tmdbSettings.MovieImagesEndpoint, movieId)))!;
 

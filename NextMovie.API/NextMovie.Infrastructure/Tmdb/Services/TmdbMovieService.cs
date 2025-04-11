@@ -28,7 +28,7 @@ namespace NextMovie.Infrastructure.Tmdb.Services
             this.crewService = crewService;
         }
 
-        public async Task<MovieDetailsDto> GetDetailsAsync(string id)
+        public async Task<MovieDetailsDto> GetDetailsAsync(long id)
         {
             List<string> backdrops = await backdropsService.GetByMovieIdAsync(id);
             List<PersonCrewDto> crew = await crewService.GetByMovieIdAsync(id);

@@ -7,6 +7,6 @@
         /// </summary>
         /// <param name="movieId"></param>
         /// <returns>A list of images paths</returns>
-        Task<List<string>> GetByMovieIdAsync(string movieId);
+        Task<List<string>> GetByMovieIdAsync(long movieId);
     }
 }

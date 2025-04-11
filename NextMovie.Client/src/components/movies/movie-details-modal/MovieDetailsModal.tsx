@@ -5,6 +5,7 @@ import { Messages } from '../../../Messages';
 import LoadingSpinner from '../../loading-spinner/LoadingSpinner';
 import { Movie } from '../../../interfaces/movies/movie.interface';
 import { MovieDetails } from '../../../interfaces/movies/movie-details.interface';
+import MovieComments from '../movie-card/comments/movie-comments/MovieComments';
 
 interface MovieDetailsProps {
   movie: Movie;
@@ -57,6 +58,10 @@ function MovieDetailsModal(props: MovieDetailsProps) {
               <p>{movie.originalLanguage}</p>
 
               <Crew crew={movieDetails?.crew} />
+              <MovieComments
+                comments={movieDetails?.comments}
+                movieId={movie.id}
+              />
             </>
           ) : (
             <p>{Messages.NoMovieDetails}</p>

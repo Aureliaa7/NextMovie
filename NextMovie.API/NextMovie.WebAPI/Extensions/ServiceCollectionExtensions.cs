@@ -38,16 +38,8 @@ namespace NextMovie.WebAPI.Extensions
 
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IPasswordService, PasswordService>();
-            services.AddScoped<IJwtService, JwtService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ITmdbGenreService, TmdbGenreService>();
-            services.AddScoped<IApiService, ApiService>();
-            services.AddScoped<ITmdbMovieService, TmdbMovieService>();
-            services.AddScoped<ITmdbConfigurationService, TmdbConfigurationService>();
-            services.AddScoped<ITmdbBackdropsService, TmdbBackdropsService>();
-            services.AddScoped<ITmdbCrewService, TmdbCrewService>();
+            RegisterDomainServices(services);
+            RegisterTmdbServices(services);
         }
 
         public static void ConfigureJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)
@@ -87,6 +79,26 @@ namespace NextMovie.WebAPI.Extensions
                 client.BaseAddress = new Uri(baseAddress);
             })
             .AddHttpMessageHandler<TmdbApiKeyHandler>();
+        }
+
+        private static void RegisterTmdbServices(IServiceCollection services)
+        {
+            services.AddScoped<ITmdbGenreService, TmdbGenreService>();
+            services.AddScoped<IApiService, ApiService>();
+            services.AddScoped<ITmdbMovieService, TmdbMovieService>();
+            services.AddScoped<ITmdbConfigurationService, TmdbConfigurationService>();
+            services.AddScoped<ITmdbBackdropsService, TmdbBackdropsService>();
+            services.AddScoped<ITmdbCrewService, TmdbCrewService>();
+            services.AddScoped<IMovieService, MovieService>();
+        }
+
+        private static void RegisterDomainServices(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IPasswordService, PasswordService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IMovieCommentService, MovieCommentService>();
         }
     }
 }

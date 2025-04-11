@@ -16,7 +16,7 @@ namespace NextMovie.Infrastructure.Tmdb.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<MovieDetailsDto> GetDetailsAsync(string id);
+        Task<MovieDetailsDto> GetDetailsAsync(long id);
 
         /// <summary>
         /// Searches for movies by title. If no results are found, it will search by genre

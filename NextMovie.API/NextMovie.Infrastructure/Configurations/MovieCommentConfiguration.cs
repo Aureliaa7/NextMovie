@@ -10,6 +10,8 @@ namespace NextMovie.Infrastructure.Configurations
         {
             builder.Property(x => x.Comment)
                .HasMaxLength(1000);
+
+            builder.HasIndex(x => x.TmdbMovieId);
         }
     }
 }

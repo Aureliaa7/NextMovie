@@ -17,7 +17,7 @@ namespace NextMovie.Infrastructure.Tmdb.Services
             this.tmdbSettings = tmdbSettings;
         }
 
-        public async Task<List<PersonCrewDto>> GetByMovieIdAsync(string movieId)
+        public async Task<List<PersonCrewDto>> GetByMovieIdAsync(long movieId)
         {
             TmdbMovieCrewDto response = (await apiService.GetAsync<TmdbMovieCrewDto>(string.Format(tmdbSettings.MovieCreditsEndpoint, movieId)))!;
             var cast = response.Cast
