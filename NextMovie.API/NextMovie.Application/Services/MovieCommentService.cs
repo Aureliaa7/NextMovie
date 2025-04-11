@@ -52,7 +52,8 @@ namespace NextMovie.Application.Services
                 Id = newComment.Id,
                 AuthorFullName = GetCommentAuthorFullName(currentUser),
                 CreatedAt = newComment.CreatedAt.ToShortTimeString(),
-                Comment = newComment.Comment
+                Comment = newComment.Comment,
+                UserId = newComment.UserId
             };
         }
 
