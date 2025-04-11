@@ -16,13 +16,7 @@ function MovieList(props: MovieListProps) {
           {props.movies.map((x) => {
             return (
               <Col className="g-1" key={x.id} xs={12} sm={6} md={4} lg={3}>
-                <MovieCard
-                  key={x.id}
-                  id={x.id}
-                  backdropPath={x.backdropPath}
-                  title={x.title}
-                  overview={x.overview}
-                />
+                <MovieCard movie={x} />
               </Col>
             );
           })}

@@ -5,4 +5,7 @@ export const Messages = {
   NoDescriptionAvailable: 'No description available.',
   MoviesRetrievalError:
     'The movies could not be retrieved due to an unexpected error.',
+  GetMovieDetailsError: 'Error occurred while getting movie details.',
+  NoMovieCrewAvailable: 'No crew details available',
+  NoMovieDetails: 'No details available',
 };
