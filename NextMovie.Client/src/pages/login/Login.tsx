@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import { Messages } from '../../Messages';
 import { UserService } from '../../services/user.service';
 import { LoginData } from '../../interfaces/account/login-data.interface';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { AuthResult } from '../../interfaces/account/auth-result.interface';
-import { Constants } from '../../Constants';
+import { AuthContextData } from '../../interfaces/auth-context-data.interface';
+import useAuth from '../../hooks/use-auth.hook';
+import { useState } from 'react';
 
 const FormFields = {
   email: 'email',
@@ -20,6 +21,7 @@ function Login() {
 
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+  const authContext: AuthContextData = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,7 +36,7 @@ function Login() {
 
     try {
       const authResult: AuthResult = await UserService.login(formData);
-      localStorage.setItem(Constants.JWT_TOKEN_KEY, authResult.token);
+      authContext?.storeTokenToLocalStorage(authResult.token);
       navigate('/');
     } catch {
       setError(Messages.LoginError);

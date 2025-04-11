@@ -1,33 +1,49 @@
 import Nav from 'react-bootstrap/Nav';
-import useAuth from '../../hooks/use-auth.hook';
 import { Navbar } from 'react-bootstrap';
 import './Header.css';
+import { Link } from 'react-router-dom';
+import { AuthContextData } from '../../interfaces/auth-context-data.interface';
+import useAuth from '../../hooks/use-auth.hook';
 
 function Header() {
-  const { isAuthenticated } = useAuth();
+  const authContext: AuthContextData = useAuth();
 
   return (
     <header className="bg-dark text-white">
       <Navbar expand="lg" className="navbar-dark fixed-top w-100">
         <div className="container-fluid">
-          <Navbar.Brand href="/">Next Movie</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            Next Movie
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarNav" />
           <Navbar.Collapse id="navbarNav">
             <Nav className="ml-auto">
               <Nav.Item>
-                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link as={Link} to="/">
+                  Home
+                </Nav.Link>
               </Nav.Item>
-              {isAuthenticated ? (
+              {authContext?.isAuthenticated ? (
                 <Nav.Item>
-                  <Nav.Link href="/">Logout</Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    onClick={() => authContext.storeTokenToLocalStorage('')}
+                    to="/"
+                  >
+                    Logout
+                  </Nav.Link>
                 </Nav.Item>
               ) : (
                 <>
                   <Nav.Item>
-                    <Nav.Link href="/register">Register</Nav.Link>
+                    <Nav.Link as={Link} to="/register">
+                      Register
+                    </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link as={Link} to="/login">
+                      Login
+                    </Nav.Link>
                   </Nav.Item>
                 </>
               )}
