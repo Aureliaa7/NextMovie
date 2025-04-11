@@ -8,7 +8,7 @@ This project is web application dveloped using **ASP.NET Web API** for the backe
 ### Technologies Used:
 
 - **Backend**: ASP.NET Web API
-- **Frontend**: React.js
+- **Frontend**: React.js, React Bootstrap
 - **Database**: SQL Server
 - **API**: The Movie Database (TMDb) API
   
