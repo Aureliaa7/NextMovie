@@ -60,7 +60,11 @@ function MovieCard(props: MovieCardProps) {
             {movie.overview ? movie.overview : Messages.NoDescriptionAvailable}
           </Card.Text>
           <Button onClick={getDetails} variant="primary">
-            View More
+            <i
+              className="bi bi-info-circle"
+              style={{ fontSize: '20px', marginRight: '8px' }}
+            ></i>
+            See More
           </Button>
         </Card.Body>
       </Card>
