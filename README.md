@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project is web application dveloped using **ASP.NET Web API** for the backend and **React** for the frontend, integrated with the **The Movie Database (TMDb)** API to fetch movie data. The project allows users to interact with movies, including viewing details, searching for movies, and leaving comments. The application adheres to the principles of **Inversion of Control** and follows **best coding practices** with a **code-first approach**.
+This project is web application developed using **ASP.NET Web API** for the backend and **React** for the frontend, integrated with the **The Movie Database (TMDb)** API to fetch movie data. The project allows users to interact with movies, including viewing details, searching for movies, and leaving comments. The application adheres to the principles of **Inversion of Control** and follows **best coding practices** with a **code-first approach**.
 
 ### Technologies Used:
 
